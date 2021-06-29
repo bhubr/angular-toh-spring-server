@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 class HeroController {
@@ -22,12 +23,14 @@ class HeroController {
 
   // Aggregate root
   // tag::get-aggregate-root[]
+	@CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/heroes")
   List<Hero> all() {
     return repository.findAll();
   }
   // end::get-aggregate-root[]
 
+	@CrossOrigin(origins = "http://localhost:4200")
   @PostMapping("/heroes")
   Hero newHero(@RequestBody Hero newHero) {
     return repository.save(newHero);
@@ -35,6 +38,7 @@ class HeroController {
 
   // Single item
 
+	@CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/heroes/{id}")
   Hero one(@PathVariable Long id) {
 
@@ -42,6 +46,7 @@ class HeroController {
       .orElseThrow(() -> new HeroNotFoundException(id));
   }
 
+	@CrossOrigin(origins = "http://localhost:4200")
   @PutMapping("/heroes/{id}")
   Hero replaceHero(@RequestBody Hero newHero, @PathVariable Long id) {
 
@@ -56,6 +61,7 @@ class HeroController {
       });
   }
 
+	@CrossOrigin(origins = "http://localhost:4200")
   @DeleteMapping("/heroes/{id}")
   void deleteHero(@PathVariable Long id) {
     repository.deleteById(id);
