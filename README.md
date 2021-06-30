@@ -10,6 +10,12 @@ Create the DB
 mysql -u<username> -p -e "create database spring_angular_heroes_db character set utf8mb4 collate utf8mb4_unicode_ci;"
 ```
 
+## Run
+
+```
+mvn spring-boot:run
+```
+
 ## Resources
 
 - [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
